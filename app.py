@@ -27,7 +27,7 @@ def load():
 df, n_species = load()
 st.title("Marine eDNA Biodiversity Dashboard")
 
-# Samples with zero reads are treated separately: they may be failed samples.
+# Samples with zero reads 
 empty = df["Richness"] == 0
 default = float(round(df.loc[~empty, "Shannon Index"].quantile(0.25), 1))
 threshold = st.slider("Flag sites with Shannon index below:", 0.0, 3.0, default, 0.1,
@@ -50,8 +50,7 @@ st.dataframe(df, use_container_width=True)
 
 st.subheader("Flagged Low-Biodiversity Sites")
 st.dataframe(at_risk, use_container_width=True)
-st.caption("Samples with no DNA detected may be failed sequencing runs or controls, "
-           "so they are listed separately rather than flagged as low biodiversity.")
+
 
 st.subheader("Top Species by Total Reads")
 st.dataframe(top_species(), use_container_width=True)
